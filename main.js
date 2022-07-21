@@ -6,17 +6,22 @@ let operation = null
 
 // this function takes in the number you type in the input field and saves it to the "firstNum" variable
 const saveFirstNumber = (num) => {
-  firstNum = parseInt(num)  
+  console.log(typeof(num), num)
+  firstNum = parseInt(num)
+  console.log(typeof(firstNum), firstNum) 
 }
 
 // this function takes in the number you type in the 2nd input field and saves it to the "secondNum" variable
 const saveSecondNumber = (num) => {
+  console.log(typeof(num), num)
   // "parseInt" is a built in function in JS that converts a string/word into a number
   secondNum = parseInt(num)
+  console.log(typeof(secondNum), secondNum)
 }
 
 // this function takes in two argument/numbers and returns the sum of them
 const add = (numA, numB) => {
+  console.log(`${numA} + ${numB}`)
   const sum = numA + numB
   return sum
 }
@@ -32,19 +37,31 @@ const subtract = (numA, numB) => {
 const multiply = (numA, numB) => {
   // * to get a product then return it
   // Open up the inspector tool in Chrome and select the Console tab to see what this functions is "logging out" to the console.
-  console.log(numA, numB)
+  console.log(`${numA} * ${numB}`)
+  const product = numA * numB
+  console.log(`= ${product}`)
+  return product
 }
 
-const divide = null
-// / to get a quotient,
+const divide = (numA, numB) => {
+if (numB == 0) {
+  const quotient = "You Can't Divide by Zero"
+  return quotient
+} else {
+  const quotient = numA / numB
+  return quotient
+}
+}
 
-const modulus = null
+const modulus = (numA, numB) => {
+  const remainder = numA % numB
+  return remainder
+}
 // and % to get a remainder.
 
 // This function changes the "operation" variable to be equal to the "id" of the button we choose on the web page.
 const changeOperation = (chosenOperation) => {
   operation = chosenOperation
-  // Use your Chrome Inspector Tool > Console Tab to see the "operation" that's logged
   console.log(operation)
 }
 
@@ -64,13 +81,13 @@ const equals = () => {
     break;
     case "subtraction": putResultInElement(subtract(firstNum, secondNum)) 
     break;
-    case "multiplication": multiply(firstNum, secondNum) 
+    case "multiplication": putResultInElement(multiply(firstNum, secondNum)) 
     break;
-    case "division": console.log(divide(firstNum, secondNum)) 
+    case "division": putResultInElement(divide(firstNum, secondNum)) 
     break;
-    case "modulus": console.log(modulus(firstNum, secondNum)) 
+    case "modulus": putResultInElement(modulus(firstNum, secondNum)) 
     break;
-    default: "Choose an operation"
+    default: document.getElementById("result").innerHTML = 'Choose an operation'
   }
 }
 
